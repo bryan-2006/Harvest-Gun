@@ -63,7 +63,8 @@ ammo_crates = pygame.sprite.Group()
 ammo_crate.add(ammo_crates)
 
 
-def make_fruit():
+def make_fruit()->None:
+  """Makes a fruit object (sprite) every so often and appends the fruit to the sprite group"""
   threading.Timer(.5, make_fruit).start()
   Fruit().add(fruits)
 
@@ -71,7 +72,8 @@ def make_fruit():
 make_fruit()
 
 
-def make_bomb():
+def make_bomb()->None:
+  """Makes a bomb object (sprite) every so often and appends the bomb to the sprite group"""
   threading.Timer(1.3, make_bomb).start()
   Bomb().add(bombs)
 
@@ -79,7 +81,8 @@ def make_bomb():
 make_bomb()
 
 
-def make_ammo():
+def make_ammo()->None:
+  """Makes a ammo object (sprite) every so often and appends the ammo to the sprite group"""
   threading.Timer(2, make_ammo).start()
   Ammo().add(ammo_crates)
 
@@ -97,8 +100,8 @@ start = time.time()
 gun_start = time.time()
 ammo = 12
 
-
-def game_end_screen(circumstance):
+def game_end_screen(circumstance)->None:
+    """Ends game based on whether the player won (lasted the length of the timer) or lost (blew up an explosives crate or ran out out of ammo)"""
     if circumstance == "win":
         gamescreen = end_game_font.render("You won! Your score is: " + str(score) + "!", False, (255,255,255))
         screen.blit(gamescreen, (80, 500 / 2))
